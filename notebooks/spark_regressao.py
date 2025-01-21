@@ -29,3 +29,18 @@ dados\
         .show(truncate=False)
 
 # %%
+dados\
+    .select('ident.customerID', 'listing.types.*', 'listing.features.*', 'listing.address.*', 'listing.prices.price', 'listing.prices.tax.*')\
+    .show(truncate=False)
+# %%
+dados\
+        .select('ident.customerID', 'listing.types.*', 'listing.features.*', 'listing.address.*', 'listing.prices.price', 'listing.prices.tax.*')\
+        .drop('location', 'neighborhood','totalAreas')\
+        .show(truncate=False)
+# %%
+dataset = dados\
+        .select('ident.customerID', 'listing.types.*', 'listing.features.*', 'listing.address.*', 'listing.prices.price', 'listing.prices.tax.*')\
+        .drop('location', 'neighborhood','totalAreas')
+# %%
+dataset
+# %%
