@@ -92,3 +92,37 @@ dataset\
 # %%
 from pyspark.sql import functions as f
 # %%
+dataset\
+    .select([f.count(f.when(f.isnan(c) | f.isnull(c), True)).alias(c) for c in dataset.columns])\
+    .show()
+# %%
+dataset\
+    .select('*')\
+    .na\
+    .fill(0)\
+    .show()
+# %%
+dataset = dataset\
+            .select('*')\
+            .na\
+            .fill(0)
+# %%
+dataset\
+    .select([f.count(f.when(f.isnan(c) | f.isnull(c), True)).alias(c) for c in dataset.columns])\
+    .show()
+# %%
+dataset\
+    .select('zone')\
+    .groupby('zone')\
+    .count()\
+    .show()
+# %%
+dataset = dataset\
+            .where(f.column('zone') != '')
+# %%
+dataset\
+    .select('zone')\
+    .groupby('zone')\
+    .count()\
+    .show()
+# %%
