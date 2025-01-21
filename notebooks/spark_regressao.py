@@ -44,3 +44,51 @@ dataset = dados\
 # %%
 dataset
 # %%
+# Tratando os Dados
+# %%
+dataset.printSchema()
+# %%
+from pyspark.sql.types import DoubleType, IntegerType
+# %%
+dataset\
+        .withColumn('usableAreas', dataset['usableAreas'].cast(IntegerType()))\
+        .withColumn('price', dataset['price'].cast(DoubleType()))\
+        .withColumn('condo', dataset['condo'].cast(DoubleType()))\
+        .withColumn('iptu', dataset['iptu'].cast(DoubleType()))\
+        .printSchema()
+# %%
+# %%
+dataset = dataset\
+        .withColumn('usableAreas', dataset['usableAreas'].cast(IntegerType()))\
+        .withColumn('price', dataset['price'].cast(DoubleType()))\
+        .withColumn('condo', dataset['condo'].cast(DoubleType()))\
+        .withColumn('iptu', dataset['iptu'].cast(DoubleType()))
+# %%
+dataset
+# %%
+dataset.show()
+# %%
+dataset\
+    .select('usage')\
+    .groupby('usage')\
+    .count()\
+    .show()
+# %%
+dataset = dataset\
+    .select('*')\
+    .where('usage == "Residencial"')
+# %%
+dataset\
+    .select('unit')\
+    .groupby('unit')\
+    .count()\
+    .show()
+# %%
+dataset\
+    .select('zone')\
+    .groupby('zone')\
+    .count()\
+    .show()
+# %%
+from pyspark.sql import functions as f
+# %%
